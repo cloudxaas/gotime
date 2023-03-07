@@ -4,10 +4,10 @@ import (
 	"github.com/cloudxaas/gobytes"
 )
 
-func GetTimeNanosecondNow() uint64 {
+func NanoNow() uint64 {
 	return uint64(time.Now().UnixNano())
 }
-func GetTimeNanosecondNowBytes() []byte {
+func NanoNowBytes() []byte {
 	return cxbytes.Uint64ToBytes(uint64(time.Now().UnixNano()))
 }
 
