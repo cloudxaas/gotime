@@ -1,6 +1,7 @@
 package cxtime
 
 import (
+	"time"
 	"github.com/cloudxaas/gobytes"
 )
 
