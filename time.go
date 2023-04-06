@@ -11,18 +11,14 @@ func NanoNow() uint64 {
 func NanoNowBytes() []byte {
 	return cxbytes.Uint64ToBytes(NanoNow())
 }
-
-func GetCurrentYear() []byte {
-    now := time.Now()
-    year := now.Year()
-    if year < 1000 {
-        return []byte{'0', '0', '0', '0'}
+func GetYearNowInBytes(buf []byte) []byte {
+    now := time.Now().Year()
+    for i := len(buf) - 1; i >= 0; i-- {
+        buf[i] = byte(now%10) + '0'
+        now /= 10
+        if now == 0 {
+            return buf[i:]
+        }
     }
-    var buf [4]byte
-    for i := 3; i >= 0; i-- {
-        buf[i] = byte('0' + year%10)
-        year /= 10
-    }
-    return buf[:]
+    return nil
 }
-
