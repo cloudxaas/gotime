@@ -25,7 +25,6 @@ func YearNow(buf []byte) []byte {
     return nil
 }
 
-
 func YearNowString() string {
 	t := time.Now()
 	year := t.Year()
