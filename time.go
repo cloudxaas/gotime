@@ -10,9 +10,11 @@ import (
 func NanoNow() uint64 {
 	return uint64(time.Now().UnixNano())
 }
+
 func NanoNowBytes() [8]byte {
 	return cxbytes.Uint64ToBytes(NanoNow())
 }
+
 func YearNow(buf []byte) []byte {
     now := time.Now().Year()
     for i := len(buf) - 1; i >= 0; i-- {
