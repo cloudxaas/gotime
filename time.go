@@ -2,13 +2,15 @@ package cxtime
 
 import (
 	"time"
-	"github.com/cloudxaas/gobytes"
+	"unsafe"
+
+	cxbytes "github.com/cloudxaas/gobytes"
 )
 
 func NanoNow() uint64 {
 	return uint64(time.Now().UnixNano())
 }
-func NanoNowBytes() []byte {
+func NanoNowBytes() [8]byte {
 	return cxbytes.Uint64ToBytes(NanoNow())
 }
 func YearNow(buf []byte) []byte {
@@ -23,12 +25,17 @@ func YearNow(buf []byte) []byte {
     return nil
 }
 
+
 func YearNowString() string {
 	t := time.Now()
-	return string([]byte{
-		byte(t.Year()/1000) + '0',
-		byte(t.Year()/100%10) + '0',
-		byte(t.Year()/10%10) + '0',
-		byte(t.Year()%10) + '0',
-	})
+	year := t.Year()
+
+	buf := [4]byte{
+		byte(year/1000) + '0',
+		byte((year/100)%10) + '0',
+		byte((year/10)%10) + '0',
+		byte(year%10) + '0',
+	}
+
+	return *(*string)(unsafe.Pointer(&buf))
 }
