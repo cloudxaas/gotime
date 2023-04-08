@@ -2,9 +2,9 @@ package cxtime
 
 import (
 	"time"
-	"unsafe"
 
 	cxbytes "github.com/cloudxaas/gobytes"
+	cx "github.com/cloudxaas/gocx"
 )
 
 func NanoNow() uint64 {
@@ -38,5 +38,5 @@ func YearNowString() string {
 		byte(year%10) + '0',
 	}
 
-	return *(*string)(unsafe.Pointer(&buf))
+	return cx.B2s(buf)
 }
