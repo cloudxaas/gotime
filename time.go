@@ -11,7 +11,7 @@ func NanoNow() uint64 {
 	return uint64(time.Now().UnixNano())
 }
 
-func NanoNowBytes() [8]byte {
+func NanoNowBytes() []byte {
 	return cxbytes.Uint64ToBytes(NanoNow())
 }
 
