@@ -5,7 +5,6 @@ import (
 	"unsafe"
 
 	cxbytes "github.com/cloudxaas/gobytes"	
-	cx "github.com/cloudxaas/gocx"	
 )
 
 func NanoNow() uint64 {
