@@ -2,8 +2,6 @@ package cxtime
 
 import (
 	"time"
-	"unsafe"
-
 	cxbytes "github.com/cloudxaas/gobytes"	
 )
 
@@ -35,5 +33,5 @@ func YearNowString() string {
 		byte((year/10)%10) + '0',
 		byte(year%10) + '0',
 	}
-	return string(buf)
+	return string(buf[:])
 }
