@@ -5,6 +5,7 @@ import (
 	"unsafe"
 
 	cxbytes "github.com/cloudxaas/gobytes"	
+	cx "github.com/cloudxaas/gocx"	
 )
 
 func NanoNow() uint64 {
@@ -28,15 +29,12 @@ func YearNow(buf []byte) []byte {
 }
 
 func YearNowString() string {
-	t := time.Now()
-	year := t.Year()
-
+	year := time.Now().Year()
 	buf := [4]byte{
 		byte(year/1000) + '0',
 		byte((year/100)%10) + '0',
 		byte((year/10)%10) + '0',
 		byte(year%10) + '0',
 	}
-
-	return *(*string)(unsafe.Pointer(&buf))
+	return string(buf)
 }
